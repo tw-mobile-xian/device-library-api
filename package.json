@@ -1,0 +1,15 @@
+{
+  "name": "device-leasing-api",
+  "version": "1.0.0",
+  "description": "api of the device leasing in tw",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "jasmine"
+  },
+  "author": "Comsumer Mobile Team",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.0"
+  }
+}
