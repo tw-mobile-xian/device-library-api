@@ -14,11 +14,6 @@ app.get('/about', (req, res) => {
   res.send("About");
 });
 
-app.get('/haha', (req, res) => {
-  res.type('text/plain');
-  res.send("Haha!");
-});
-
 app.use((req, res) => {
   res.type('jstext/plainon');
   res.status(404);
