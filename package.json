@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "build": "babel --presets es2015 -d build/ src",
-    "start": "babel --presets es2015 -d build/ src && node ./build/app.js",
+    "start": "node ./build/app.js",
     "test": "echo 'no testing script specific'"
   },
   "author": "Comsumer Mobile Team",
