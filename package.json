@@ -1,5 +1,5 @@
 {
-  "name": "device-leasing-api",
+  "name": "device-library-api",
   "version": "1.0.0",
   "description": "api of the device leasing in tw",
   "main": "app.js",
