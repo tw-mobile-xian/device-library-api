@@ -15,7 +15,7 @@ app.get('/about', (req, res) => {
 });
 
 app.use((req, res) => {
-  res.type('jstext/plainon');
+  res.type('text/plain');
   res.status(404);
   res.send("404 - Not Found");
 });
