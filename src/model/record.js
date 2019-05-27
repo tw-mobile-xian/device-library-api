@@ -5,12 +5,11 @@ export default class Record {
     this.borrower = borrower;
     this.provider = {};
     this.devices = [];
-    this.date = Date.now();
+    this.date = this._defaultLeasingPeriod();
     this.period = 0;
   }
 
   _defaultLeasingPeriod() {
-    // 3 days -> ms
     return 3 * DAY; 
   }
 }

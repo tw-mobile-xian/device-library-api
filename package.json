@@ -4,9 +4,9 @@
   "description": "api of the device leasing in tw",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "test": "echo 'no testing script specific'",
-    "build": "babel --presets es2015 -d build/ src"
+    "build": "babel --presets es2015 -d build/ src",
+    "start": "babel --presets es2015 -d build/ src && node ./build/app.js",
+    "test": "echo 'no testing script specific'"
   },
   "author": "Comsumer Mobile Team",
   "license": "ISC",
