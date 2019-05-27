@@ -1,1 +1,1 @@
-# device-leasing-api
+# device-library-api
