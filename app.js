@@ -2,7 +2,9 @@ const express = require('express');
 
 const app = express();
 
-app.set('port', process.env.PORT || 3000)
+const port_key = 'port';
+const DEFAULT_PORT = 3000;
+app.set(port_key, process.env.PORT || DEFAULT_PORT)
 
 app.get('/', (req, res) => {
   res.type('text/plain');
@@ -20,6 +22,6 @@ app.use((req, res) => {
   res.send("404 - Not Found");
 });
 
-app.listen(app.get('port'), () => {
-  console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
+app.listen(app.get(port_key), () => {
+  console.log('Express started on http://localhost:' + app.get(port_key) + '; press Ctrl-C to terminate.');
 });

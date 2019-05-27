@@ -5,15 +5,20 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "test": "echo 'no testing script specific'"
+    "test": "echo 'no testing script specific'",
+    "build": "babel --presets es2015 -d build/ src"
   },
   "author": "Comsumer Mobile Team",
   "license": "ISC",
-  "dependencies": {
-    "express": "^4.17.0"
-  },
   "engines": {
     "node": "~8.11.4",
     "npm": "~6.9.0"
+  },
+  "dependencies": {
+    "express": "^4.17.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1"
   }
 }
