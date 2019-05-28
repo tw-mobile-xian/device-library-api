@@ -5,8 +5,8 @@ export default class Record {
     this.borrower = borrower;
     this.provider = {};
     this.devices = [];
-    this.date = this._defaultLeasingPeriod();
-    this.period = 0;
+    this.date = date;
+    this.period = period;
   }
 
   _defaultLeasingPeriod() {
