@@ -1,5 +1,4 @@
 import express from 'express';
-import Database from '../build/common/db/database';
 
 const app = express();
 
@@ -26,5 +25,3 @@ app.use((req, res) => {
 app.listen(app.get(port_key), () => {
   console.log('Express started on http://localhost:' + app.get(port_key) + '; press Ctrl-C to terminate.');
 });
-
-const DB = new Database();

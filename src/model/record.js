@@ -1,4 +1,4 @@
-import { DAY } from '../utils/time';
+import { DAY } from '../common/time';
 
 export default class Record {
   constructor(borrower, provider, devices, date, period) {

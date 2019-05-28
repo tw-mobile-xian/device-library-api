@@ -5,7 +5,3 @@ export default class Database {
     this._db = new MongooseDatabase();
   }
 }
-
-class MongoDB {
-
-}
