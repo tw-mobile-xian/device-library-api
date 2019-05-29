@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "build": "babel --presets es2015 -d build/ src",
+    "clean": "rm -rf build",
     "start": "node ./build/app.js",
     "buildAndStart": "babel --presets es2015 -d build/ src && node ./build/app.js",
     "test": "echo 'no testing script specific'"
