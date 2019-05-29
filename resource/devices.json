@@ -1,0 +1,16 @@
+[
+  {
+    "name": "iPhone Xs",
+    "screen": "6.1-inches",
+    "platform": "iOS",
+    "version": "12.3",
+    "storage": "64GB"
+  },
+  {
+    "name": "Pixel 3",
+    "screen": "6-inches",
+    "platform": "Android",
+    "version": "8.0",
+    "storage": "128GB"
+  }
+]

@@ -1,5 +1,7 @@
 import { Router } from 'express';
 
+import DeviceController from './controller/DeviceController';
+
 const router = Router();
 
 router.get('/', (req, res) => {
@@ -10,7 +12,8 @@ router.get('/', (req, res) => {
 router.get('/devices', (req, res) => {
   res.type('application/json');
   res.status(200);
-  res.send('[]');
+  const controller = new DeviceController();
+  res.send(controller.devices());
 });
 
 router.get('/devices/{id}', (req, res) => {
