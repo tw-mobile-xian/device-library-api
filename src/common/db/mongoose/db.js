@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
-const LOCAL_MONGODB_URI = 'mongodb://127.0.0.1:27017/cxmobile'
 const DB_NAME = 'cxmobile';
+const LOCAL_MONGODB_URI = 'mongodb://127.0.0.1:27017/' + DB_NAME;
 
 export default class MongooseDatabase {
   constructor() {
@@ -13,5 +13,13 @@ export default class MongooseDatabase {
       console.log("Connect to MongoDB: " + mongodbURI + ' successfully!')
     });
     this._conn = conn;
+  }
+
+  save(obj, completion) {
+    obj.save(completion);
+  }
+
+  find(model, query, completion) {
+    model.find(query, completion);
   }
 }

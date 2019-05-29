@@ -1,9 +1,11 @@
 import { Schema } from 'mongoose';
 
 const DeviceSchema = new Schema({
-  id: Schema.Types.ObjectId,
   name: String,
-  os: String
+  screen: String,
+  platform: String,
+  version: String,
+  storage: String,
 });
 
 export default DeviceSchema;

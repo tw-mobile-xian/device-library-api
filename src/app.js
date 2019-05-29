@@ -1,5 +1,8 @@
 import express from 'express';
 
+import DB from './common/db/database';
+import Team from './model/team';
+
 const app = express();
 
 const port_key = 'port';
@@ -11,9 +14,17 @@ app.get('/', (req, res) => {
   res.send("Hello, World!");
 });
 
-app.get('/about', (req, res) => {
-  res.type('text/plain');
-  res.send("About");
+app.get('/team', (req, res) => {
+  const team = new Team({name: "AAP"});
+  const db = new DB();
+  db.save(team, err => {
+    db.find(Team, {}, (error, doc) => {
+      console.log(error);
+      console.log(doc);
+      res.type('application/json');
+      res.send(JSON.stringify(doc));
+    });
+  });
 });
 
 app.use((req, res) => {

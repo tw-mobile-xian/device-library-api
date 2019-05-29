@@ -1,15 +1,7 @@
-import { DAY } from '../common/time';
+import mongoose from 'mongoose';
 
-export default class Record {
-  constructor(borrower, provider, devices, date, period) {
-    this.borrower = borrower;
-    this.provider = {};
-    this.devices = [];
-    this.date = date;
-    this.period = period;
-  }
+import { RecordSchema } from '../common/db/mongoose/schema';
 
-  _defaultLeasingPeriod() {
-    return 3 * DAY; 
-  }
-}
+const Record = mongoose.model('Record', RecordSchema);
+
+export default Record;

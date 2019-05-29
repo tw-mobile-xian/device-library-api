@@ -1,11 +1,10 @@
 import { Schema } from 'mongoose';
 
-import { TeamSchema } from './TeamSchema';
-
 const PersonSchema = new Schema({
+  id: String,
   name: String,
-  email: String,
-  team: TeamSchema
+  contact: String,
+  team: String
 });
 
 export default PersonSchema;
