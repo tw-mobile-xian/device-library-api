@@ -8,6 +8,9 @@ const port_key = 'port';
 const DEFAULT_PORT = 3000;
 app.set(port_key, process.env.PORT || DEFAULT_PORT)
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use('/', router);
 app.use((req, res) => {
   res.type('text/plain');

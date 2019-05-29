@@ -5,7 +5,7 @@ export const PersonSchema = new mongoose.Schema({
   name: String,
   contact: String,
   team: String
-});
+}, { _id: false });
 
 const Person = mongoose.model('Person', PersonSchema);
 

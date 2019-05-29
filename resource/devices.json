@@ -1,6 +1,6 @@
 [
   {
-    "id": "1",
+    "id": "f72afe98-4090-499a-80fc-e7619ef7875b",
     "name": "iPhone Xs",
     "screen": "6.1-inches",
     "platform": "iOS",
@@ -8,7 +8,7 @@
     "storage": "64GB"
   },
   {
-    "id": "2",
+    "id": "57967511-3da2-4429-b803-8385bb1212f4",
     "name": "Pixel 3",
     "screen": "6-inches",
     "platform": "Android",
