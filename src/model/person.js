@@ -1,6 +1,11 @@
 import mongoose from 'mongoose';
 
-import PersonSchema from '../common/db/mongoose/schema/PersonSchema';
+export const PersonSchema = new mongoose.Schema({
+  id: String,
+  name: String,
+  contact: String,
+  team: String
+});
 
 const Person = mongoose.model('Person', PersonSchema);
 

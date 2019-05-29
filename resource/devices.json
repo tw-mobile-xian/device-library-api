@@ -1,5 +1,6 @@
 [
   {
+    "id": "1",
     "name": "iPhone Xs",
     "screen": "6.1-inches",
     "platform": "iOS",
@@ -7,6 +8,7 @@
     "storage": "64GB"
   },
   {
+    "id": "2",
     "name": "Pixel 3",
     "screen": "6-inches",
     "platform": "Android",

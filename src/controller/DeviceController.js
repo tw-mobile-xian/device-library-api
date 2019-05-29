@@ -9,9 +9,16 @@ export default class DeviceController {
     this._dataSource = new Database()
   }
 
-  devices() {
+  getDevices() {
     const rawData = fs.readFileSync(path.resolve(__dirname, '../../resource/devices.json'));
-    const devices = JSON.parse(rawData);
-    return devices.map(device => new Device(device));
+    const devices = JSON.parse(rawData).map(device => new Device(device));
+    return devices;
+  }
+
+  getDeviceBy(id) {
+    const rawData = fs.readFileSync(path.resolve(__dirname, '../../resource/devices.json'));
+    const devices = JSON.parse(rawData).map(device => new Device(device));
+    const device = devices.filter(device => device.id == id)[0];
+    return device;
   }
 }

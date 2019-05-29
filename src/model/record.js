@@ -1,6 +1,14 @@
 import mongoose from 'mongoose';
 
-import RecordSchema from '../common/db/mongoose/schema/RecordSchema';
+import { PersonSchema } from './person';
+import { DeviceSchema } from './device';
+
+const RecordSchema = new mongoose.Schema({
+  borrower: PersonSchema,
+  devices: [DeviceSchema],
+  date: Date,
+  period: Number
+});
 
 const Record = mongoose.model('Record', RecordSchema);
 

@@ -1,6 +1,13 @@
 import mongoose from 'mongoose';
 
-import DeviceSchema from '../common/db/mongoose/schema/DeviceSchema';
+export const DeviceSchema = new mongoose.Schema({
+  id: String,
+  name: String,
+  screen: String,
+  platform: String,
+  version: String,
+  storage: String
+}, { _id: false });
 
 const Device = mongoose.model('Device', DeviceSchema);
 
