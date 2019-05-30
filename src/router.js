@@ -7,53 +7,71 @@ const router = Router();
 
 router.get('/', (req, res) => {
   res.type('text/html');
-  res.send("<h1 style=\"text-align: center;\"> Hello, Device Library(小借借)! </h1>");
+  res.send("<h1 style=\"text-align: center;\"> Hello, Device Library(REA小借借)! </h1>");
 });
 
 router.get('/devices', async (req, res, next) => {
   const controller = new DeviceController();
   const devices = await controller.getDevices();
-
-  if (devices.length > 0) {
-    res.status(200);
-    res.type('application/json');
-    res.send(devices);
-  } else {
-    next();
+  try {
+    if (devices.length > 0) {
+      res.status(200);
+      res.type('application/json');
+      res.send(devices);
+    } else {
+      next();
+    }
+  } catch (error) {
+    next(error);
   }
 });
 
 router.get('/devices/:id', async (req, res, next) => {
   const controller = new DeviceController();
-  const device = await controller.getDeviceBy(req.params.id);
-
-  if (device) {
-    res.status(200);
-    res.type('application/json');
-    res.send(device);
-  } else {
-    next();
+  try {
+    const device = await controller.getDeviceBy(req.params.id);
+    if (device) {
+      res.status(200);
+      res.type('application/json');
+      res.send(device);
+    } else {
+      next();
+    }
+  } catch(error) {
+    next(error);
   }
 });
 
 router.get('/records', async (req, res, next) => {
   const controller = new RecordController();
-  const records = await controller.getRecords();
-  if (records.length > 0) {
-    res.status(200);
-    res.type('application/json');
-    res.send(records);
-  } else {
-    next();
+  try {
+    const records = await controller.getRecords();
+    if (records.length > 0) {
+      res.status(200);
+      res.type('application/json');
+      res.send(records);
+    } else {
+      next();
+    }
+  } catch(error) {
+    next(error);
   }
 });
 
-router.post('/records', async (req, res) => {
+router.post('/records', async (req, res, next) => {
   const controller = new RecordController();
-  const createdRecord = await controller.createRecord(req.body);
-  res.status(201);
-  res.type('application/json');
-  res.send(createdRecord);
+  try {
+    const createdRecord = await controller.createRecord(req.body);
+    if (createdRecord) {
+      res.status(201);
+      res.type('application/json');
+      res.send(createdRecord);
+    } else {
+      next();
+    }
+  } catch(error) {
+    next(error)
+  }
 });
 
 export default router;
