@@ -15,11 +15,13 @@ export default class MongooseDatabase {
     this._conn = conn;
   }
 
-  save(obj, completion) {
-    obj.save(completion);
+  save(model) {
+    const handler = (resolve, reject) => model.save((err, document) => err ? reject(err) : resolve(document));
+    return new Promise(handler);
   }
 
-  find(model, query, completion) {
-    model.find(query, completion);
+  find(model, query) {
+    const handler = (resolve, reject) => model.find(query, (err, document) => err ? reject(err) : resolve(document));
+    return new Promise(handler);
   }
 }

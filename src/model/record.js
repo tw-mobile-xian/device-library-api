@@ -5,7 +5,7 @@ import { PersonSchema } from './person';
 const RecordSchema = new mongoose.Schema({
   type: String,
   borrower: PersonSchema,
-  deviceIDs: [String],
+  deviceID: String,
   date: Date,
   period: Number
 });

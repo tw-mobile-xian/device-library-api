@@ -5,11 +5,11 @@ export default class Database {
     this._db = new MongooseDatabase();
   }
 
-  save(obj, completion) {
-    this._db.save(obj, completion);
+  save(obj) {
+    return this._db.save(obj);
   }
 
-  find(model, query, completion) {
-    this._db.find(model, query, completion);
+  find(model, query) {
+    return this._db.find(model, query);
   }
 }

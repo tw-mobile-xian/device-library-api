@@ -1,19 +1,33 @@
-import fs from 'fs';
-import path from 'path';
-
-import Device from '../model/device';
+import RecordService from '../service/RecordService';
+import DeviceService from '../service/DeviceService';
+import { RECORD_TYPE } from '../model/record';
+import Device, { DEVICE_STATUS } from '../model/device';
 
 export default class DeviceController {
-  getDevices() {
-    const rawData = fs.readFileSync(path.resolve(__dirname, '../../resource/devices.json'));
-    const devices = JSON.parse(rawData).map(device => new Device(device));
+  constructor() {
+    this._recordService = new RecordService();
+    this._deviceService = new DeviceService();
+  }
+
+  async getDevices() {
+    const devices = await Promise.all(
+      this._deviceService.getDevices()
+        .map(device => new Device(device))
+        .map(async device => {
+          const latestRecord = await this._recordService.getLatestRecordFor(device.id);
+          const status = (latestRecord && latestRecord.type == RECORD_TYPE.BORROW) ? DEVICE_STATUS.UNAVAILABLE : DEVICE_STATUS.AVAILABLE;
+          return Object.assign(JSON.parse(JSON.stringify(device)), { status: status });
+        })
+    );
     return devices;
   }
 
-  getDeviceBy(id) {
-    const rawData = fs.readFileSync(path.resolve(__dirname, '../../resource/devices.json'));
-    const devices = JSON.parse(rawData).map(device => new Device(device));
-    const device = devices.filter(device => device.id == id)[0];
-    return device;
+  async getDeviceBy(id) {
+    const device = this._deviceService.getDeviceBy(id);
+    if (device) {
+      const latestRecord = await this._recordService.getLatestRecordFor(device.id);
+      const status = (latestRecord && latestRecord.type == RECORD_TYPE.BORROW) ? DEVICE_STATUS.UNAVAILABLE : DEVICE_STATUS.AVAILABLE;
+      return Object.assign(JSON.parse(JSON.stringify(device)), { status: status });
+    }
   }
 }
