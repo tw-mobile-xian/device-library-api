@@ -1,11 +1,59 @@
 [
   {
     "id": "3d1c2339-7a1d-4806-9848-9171f42320cf",
-    "name": " Pixel 3 XL",
+    "name": "Pixel 3 XL",
     "screen": "6.3-inches",
     "platform": "Android",
     "version": "9",
     "storage": "64GB"
+  },
+  {
+    "id": "dae6fbce-9252-44f3-b6d1-031dd372a740",
+    "name": "Galaxy Note 5",
+    "screen": "5.7-inches",
+    "platform": "Android",
+    "version": "7.0",
+    "storage": "32GB"
+  },
+  {
+    "id": "a7cdb383-af29-4d40-b5b0-c5cd0ea4fa11",
+    "name": "Galaxy S5",
+    "screen": "5.1-inches",
+    "platform": "Android",
+    "version": "6.0.1",
+    "storage": "16GB"
+  },
+  {
+    "id": "0e3d692a-346b-4382-9cd1-9a0a7cf02d04",
+    "name": "Galaxy Tab A",
+    "screen": "10.1-inches",
+    "platform": "Android",
+    "version": "7.0",
+    "storage": "16GB"
+  },
+  {
+    "id": "04e74e50-44a1-40f4-b58d-6b02c0db7286",
+    "name": "Galaxy S9",
+    "screen": "5.8-inches",
+    "platform": "Android",
+    "version": "8.0.0",
+    "storage": "64GB"
+  },
+  {
+    "id": "bd494c56-7505-40be-bbcb-a21123eea1c7",
+    "name": "Galaxy S6",
+    "screen": "5.1-inches",
+    "platform": "Android",
+    "version": "7.0",
+    "storage": "32GB"
+  },
+  {
+    "id": "18b551dc-2b14-4a0c-ab85-39eefb3e047b",
+    "name": "Pixel",
+    "screen": "5.0-inches",
+    "platform": "Android",
+    "version": "7.0",
+    "storage": "32GB"
   },
   {
     "id": "e1cd38a1-f857-4870-8e75-ee4c15eb7f98",
@@ -14,5 +62,45 @@
     "platform": "iOS",
     "version": "12.2",
     "storage": "64GB"
+  },
+  {
+    "id": "ea9902b0-02aa-4b68-88da-5b6225528013",
+    "name": "iPad Pro",
+    "screen": "12.9-inches",
+    "platform": "iOS",
+    "version": "11.4.1",
+    "storage": "32GB"
+  },
+  {
+    "id": "c2e2b8c6-56ed-4acc-ae05-9ec944a17683",
+    "name": "iPhone 8",
+    "screen": "4.7-inches",
+    "platform": "iOS",
+    "version": "12.1",
+    "storage": "64GB"
+  },
+  {
+    "id": "549974b8-b99d-4be2-bc09-6384338f1846",
+    "name": "iPhone 6s Plus",
+    "screen": "5.5-inches",
+    "platform": "iOS",
+    "version": "12.0",
+    "storage": "16GB"
+  },
+  {
+    "id": "c1c48bd2-91bb-4fd1-8f89-9789cc3d6f1e",
+    "name": "iPhone 6s",
+    "screen": "4.7-inches",
+    "platform": "iOS",
+    "version": "11.4.1",
+    "storage": "16GB"
+  },
+  {
+    "id": "c489ddca-6099-46d1-a5db-532652e459fc",
+    "name": "iPad mini",
+    "screen": "7.9-inches",
+    "platform": "iOS",
+    "version": "11.4",
+    "storage": "16GB"
   }
 ]
