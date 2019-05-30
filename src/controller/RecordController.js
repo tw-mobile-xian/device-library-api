@@ -7,9 +7,7 @@ export default class RecordController {
   }
 
   getRecords(completion) {
-    return this._dataSource.find(Record, {}, (err, document) => {
-      completion(document);
-    });
+    return this._dataSource.find(Record, {}, completion);
   }
 
   createRecord(recordDocument, completion) {

@@ -43,8 +43,13 @@ router.get('/records', (req, res, next) => {
       return;
     }
     if (records.length > 0) {
+      const deviceController = new DeviceController();
+      const newRecords = records.map(record => {
+        const devices = record.deviceIDs.map(id => deviceController.getDeviceBy(id))
+        return Object.assign(JSON.parse(JSON.stringify(record)), { devices: devices }, { deviceIDs: undefined, __v: undefined});
+      });
       res.status(200);
-      res.send(records);
+      res.send(newRecords);
     } else {
       next();
     }
@@ -52,33 +57,14 @@ router.get('/records', (req, res, next) => {
 });
 
 router.post('/records', (req, res) => {
-  console.log(req.body);
-  // const recordDocument = {
-  //   type: "borrow",
-  //   borrower: {
-  //     id: "wechat_gx",
-  //     name: "GX",
-  //     contact: "1234567890",
-  //     team: "AAP"
-  //   },
-  //   devices: [
-  //     {
-  //       "id": "2",
-  //       "name": "Pixel 3",
-  //       "screen": "6-inches",
-  //       "platform": "Android",
-  //       "version": "8.0",
-  //       "storage": "128GB"
-  //     }
-  //   ],
-  //   date: Date.now(),
-  //   period: 3 * 24 * 60 * 60 * 1000
-  // };
-  const controller = new RecordController();
-  controller.createRecord(recordDocument, (err, result) => {
+  const recordDocument = req.body;
+  const recordController = new RecordController();
+  recordController.createRecord(recordDocument, (err, result) => {
     console.log(result);
     res.type('application/json');
-    res.send(result);
+    const deviceController = new DeviceController();
+    const devices = result.deviceIDs.map(id => deviceController.getDeviceBy(id));
+    res.send(Object.assign(JSON.parse(JSON.stringify(result)), { devices: devices }, { deviceIDs: undefined, __v: undefined }));
   });
 });
 

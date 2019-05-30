@@ -1,12 +1,11 @@
 import mongoose from 'mongoose';
 
 import { PersonSchema } from './person';
-import { DeviceSchema } from './device';
 
 const RecordSchema = new mongoose.Schema({
   type: String,
   borrower: PersonSchema,
-  devices: [DeviceSchema],
+  deviceIDs: [String],
   date: Date,
   period: Number
 });
