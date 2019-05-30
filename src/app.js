@@ -18,6 +18,13 @@ app.use((req, res) => {
   res.send("404 - Not Found");
 });
 
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.type('text/plain');
+  res.status(500);
+  res.send('500 - Server Internal Error!');
+});
+
 app.listen(app.get(port_key), () => {
   console.log('Express started on http://localhost:' + app.get(port_key) + '; press Ctrl-C to terminate.');
 });
