@@ -12,3 +12,8 @@ export const DeviceSchema = new mongoose.Schema({
 const Device = mongoose.model('Device', DeviceSchema);
 
 export default Device;
+
+export const DEVICE_STATUS = {
+  AVAILABLE: "AVAILABLE",
+  UNAVAILABLE: "UNAVAILABLE"
+}

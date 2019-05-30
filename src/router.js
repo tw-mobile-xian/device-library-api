@@ -3,6 +3,9 @@ import { Router } from 'express';
 import DeviceController from './controller/DeviceController';
 import RecordController from './controller/RecordController';
 
+import { DEVICE_STATUS } from './model/device';
+import { RECORD_TYPE } from './model/record';
+
 const router = Router();
 
 router.get('/', (req, res) => {
@@ -28,7 +31,7 @@ router.get('/devices/:id', (req, res, next) => {
   const recordController = new RecordController();
   const device = controller.getDeviceBy(req.params.id);
   recordController.getLatestRecordFor(device.id, latestRecord => {
-    const status = (latestRecord && latestRecord.type == 'borrow') ? 'unavailiable' : 'availiable';
+    const status = (latestRecord && latestRecord.type == RECORD_TYPE.BORROW) ? DEVICE_STATUS.UNAVAILABLE : DEVICE_STATUS.AVAILABLE;
     res.type('application/json');
     if (device) {
       res.status(200);

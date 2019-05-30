@@ -13,3 +13,8 @@ const RecordSchema = new mongoose.Schema({
 const Record = mongoose.model('Record', RecordSchema);
 
 export default Record;
+
+export const RECORD_TYPE = {
+  BORROW: "borrow",
+  RETURN: "return"
+}
