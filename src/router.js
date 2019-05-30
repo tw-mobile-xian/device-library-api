@@ -2,6 +2,7 @@ import { Router } from 'express';
 
 import DeviceController from './controller/DeviceController';
 import RecordController from './controller/RecordController';
+import ListingController from './controller/ListingController';
 
 const router = Router();
 
@@ -9,6 +10,14 @@ router.get('/', (req, res) => {
   res.type('text/html');
   res.send("<h1 style=\"text-align: center;\"> Hello, Device Library(REA小借借)! </h1>");
 });
+
+router.get('/listings', async (req, res, next) => {
+  const controller = new ListingController();
+  const listings = await controller.getListings();
+  res.status(200);
+  res.type('application/json');
+  res.send(listings);
+})
 
 router.get('/devices', async (req, res, next) => {
   const controller = new DeviceController();
