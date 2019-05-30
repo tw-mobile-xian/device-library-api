@@ -12,6 +12,7 @@ router.get('/', (req, res) => {
 
 router.get('/devices', (req, res, next) => {
   res.type('application/json');
+  const recordController = new RecordController();
   const controller = new DeviceController();
   const devices = controller.getDevices();
   if (devices.length > 0) {
@@ -24,14 +25,18 @@ router.get('/devices', (req, res, next) => {
 
 router.get('/devices/:id', (req, res, next) => {
   const controller = new DeviceController();
+  const recordController = new RecordController();
   const device = controller.getDeviceBy(req.params.id);
-  res.type('application/json');
-  if (device) {
-    res.status(200);
-    res.send(device);
-  } else {
-    next();
-  }
+  recordController.getLatestRecordFor(device.id, latestRecord => {
+    const status = (latestRecord && latestRecord.type == 'borrow') ? 'unavailiable' : 'availiable';
+    res.type('application/json');
+    if (device) {
+      res.status(200);
+      res.send(Object.assign(JSON.parse(JSON.stringify(device)), { status: status }));
+    } else {
+      next();
+    }
+  });
 });
 
 router.get('/records', (req, res, next) => {
@@ -60,7 +65,6 @@ router.post('/records', (req, res) => {
   const recordDocument = req.body;
   const recordController = new RecordController();
   recordController.createRecord(recordDocument, (err, result) => {
-    console.log(result);
     res.type('application/json');
     const deviceController = new DeviceController();
     const devices = result.deviceIDs.map(id => deviceController.getDeviceBy(id));

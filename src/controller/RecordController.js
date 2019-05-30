@@ -10,6 +10,13 @@ export default class RecordController {
     return this._dataSource.find(Record, {}, completion);
   }
 
+  getLatestRecordFor(deviceID, completion) {
+    return this._dataSource.find(Record, {deviceIDs: [deviceID]}, (err, records) => {
+      const latest = records[records.length - 1];
+      completion(latest);
+    });
+  }
+
   createRecord(recordDocument, completion) {
     const record = new Record(recordDocument);
     this._dataSource.save(record, completion);
