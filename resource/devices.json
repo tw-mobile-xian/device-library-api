@@ -1,18 +1,18 @@
 [
   {
-    "id": "f72afe98-4090-499a-80fc-e7619ef7875b",
-    "name": "iPhone Xs",
-    "screen": "6.1-inches",
-    "platform": "iOS",
-    "version": "12.3",
+    "id": "3d1c2339-7a1d-4806-9848-9171f42320cf",
+    "name": " Pixel 3 XL",
+    "screen": "6.3-inches",
+    "platform": "Android",
+    "version": "9",
     "storage": "64GB"
   },
   {
-    "id": "57967511-3da2-4429-b803-8385bb1212f4",
-    "name": "Pixel 3",
-    "screen": "6-inches",
-    "platform": "Android",
-    "version": "8.0",
-    "storage": "128GB"
+    "id": "e1cd38a1-f857-4870-8e75-ee4c15eb7f98",
+    "name": "iPhone Xs",
+    "screen": "5.8-inches",
+    "platform": "iOS",
+    "version": "12.2",
+    "storage": "64GB"
   }
 ]
