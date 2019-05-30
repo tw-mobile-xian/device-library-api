@@ -1,6 +1,7 @@
 import Record from '../model/record';
 import RecordService from '../service/RecordService';
 import DeviceService from '../service/DeviceService';
+import { DAY } from '../common/time';
 
 export default class RecordController {
   constructor() {
@@ -16,11 +17,10 @@ export default class RecordController {
     return records;
   }
 
-  createRecord(recordDocument) {
-    const record = new Record(recordDocument);
-    return this._recordService.createRecord(record).then(createdRecord => {
-      const device = this._deviceService.getDeviceBy(createdRecord.deviceID)
-      return Object.assign(JSON.parse(JSON.stringify(createdRecord)), { device: device }, { deviceID: undefined, __v: undefined })
-    }); 
+  async createRecord(recordDocument) {
+    const record = new Record(Object.assign(recordDocument, { date: Date.now(), period: 3 * DAY }));
+    const createdRecord = await this._recordService.createRecord(record);
+    const device = this._deviceService.getDeviceBy(createdRecord.deviceID);
+    return Object.assign(JSON.parse(JSON.stringify(createdRecord)), { device: device }, { deviceID: undefined, __v: undefined });
   }
 }

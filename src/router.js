@@ -3,8 +3,6 @@ import { Router } from 'express';
 import DeviceController from './controller/DeviceController';
 import RecordController from './controller/RecordController';
 
-import { DEVICE_STATUS } from './model/device';
-
 const router = Router();
 
 router.get('/', (req, res) => {
@@ -13,12 +11,12 @@ router.get('/', (req, res) => {
 });
 
 router.get('/devices', async (req, res, next) => {
-  res.type('application/json');
   const controller = new DeviceController();
   const devices = await controller.getDevices();
 
   if (devices.length > 0) {
     res.status(200);
+    res.type('application/json');
     res.send(devices);
   } else {
     next();
@@ -29,9 +27,9 @@ router.get('/devices/:id', async (req, res, next) => {
   const controller = new DeviceController();
   const device = await controller.getDeviceBy(req.params.id);
 
-  res.type('application/json');
   if (device) {
     res.status(200);
+    res.type('application/json');
     res.send(device);
   } else {
     next();
@@ -43,6 +41,7 @@ router.get('/records', async (req, res, next) => {
   const records = await controller.getRecords();
   if (records.length > 0) {
     res.status(200);
+    res.type('application/json');
     res.send(records);
   } else {
     next();
@@ -50,9 +49,9 @@ router.get('/records', async (req, res, next) => {
 });
 
 router.post('/records', async (req, res) => {
-  const recordDocument = req.body;
-  const recordController = new RecordController();
-  const createdRecord = await recordController.createRecord(recordDocument);
+  const controller = new RecordController();
+  const createdRecord = await controller.createRecord(req.body);
+  res.status(201);
   res.type('application/json');
   res.send(createdRecord);
 });

@@ -6,8 +6,8 @@ export default class RecordService {
     this._dataSource = new Database()
   }
 
-  getRecords() {
-    return this._dataSource.find(Record);
+  async getRecords() {
+    return await this._dataSource.find(Record);
   }
 
   async getLatestRecordFor(deviceID) {
@@ -15,7 +15,7 @@ export default class RecordService {
     return records[records.length - 1];
   }
 
-  createRecord(record) {
-    return this._dataSource.save(record);
+  async createRecord(record) {
+    return await this._dataSource.save(record);
   }
 }
