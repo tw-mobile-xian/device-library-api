@@ -102,5 +102,13 @@
     "platform": "iOS",
     "version": "11.4",
     "storage": "16GB"
+  },
+  {
+    "id": "7413ec2a-ab07-4a00-9a03-94bf60156fa1",
+    "name": "iPad Pro",
+    "screen": "12.9-inches",
+    "platform": "iOS",
+    "version": "12.1",
+    "storage": "64GB"
   }
 ]
