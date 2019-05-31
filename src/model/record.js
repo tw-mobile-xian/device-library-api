@@ -17,4 +17,4 @@ export default Record;
 export const RECORD_TYPE = {
   BORROW: "borrow",
   RETURN: "return"
-}
+};

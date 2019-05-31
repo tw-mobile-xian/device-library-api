@@ -16,4 +16,4 @@ export default Device;
 export const DEVICE_STATUS = {
   AVAILABLE: "AVAILABLE",
   UNAVAILABLE: "UNAVAILABLE"
-}
+};

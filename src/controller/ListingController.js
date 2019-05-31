@@ -15,7 +15,7 @@ export default class ListingController {
         .map(device => new Device(device))
         .map(async device => {
           const latestRecord = await this._recordService.getLatestRecordFor(device.id);
-          const status = (latestRecord && latestRecord.type == RECORD_TYPE.BORROW) ? DEVICE_STATUS.UNAVAILABLE : DEVICE_STATUS.AVAILABLE;
+          const status = (latestRecord && latestRecord.type === RECORD_TYPE.BORROW) ? DEVICE_STATUS.UNAVAILABLE : DEVICE_STATUS.AVAILABLE;
           return Object.assign(JSON.parse(JSON.stringify(device)), { status: status });
         })
     );
