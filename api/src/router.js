@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import path from 'path';
 
 import DeviceController from './controller/DeviceController';
 import RecordController from './controller/RecordController';
@@ -8,7 +9,7 @@ const router = Router();
 
 router.get('/', (req, res) => {
   res.type('text/html');
-  res.send("<h1 style=\"text-align: center;\"> Hello, Device Library(REA小借借)! </h1>");
+  res.sendFile(path.resolve(__dirname, '../../console/index.html'));
 });
 
 router.get('/listings', async (req, res, next) => {
@@ -17,7 +18,7 @@ router.get('/listings', async (req, res, next) => {
   res.status(200);
   res.type('application/json');
   res.send(listings);
-})
+});
 
 router.get('/devices', async (req, res, next) => {
   const controller = new DeviceController();

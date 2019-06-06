@@ -4,10 +4,10 @@
   "description": "api of the device leasing in tw",
   "main": "app.js",
   "scripts": {
-    "build": "babel --presets es2015 -d build/ src",
+    "build": "babel --presets es2015 -d build/ api/src",
     "clean": "rm -rf build",
-    "start": "node ./build/app.js",
-    "buildAndStart": "babel --presets es2015 -d build/ src && node ./build/app.js",
+    "start": "node ./build/api/app.js",
+    "serve": "rm -rf build && babel --presets es2015 -d build/api api/src && node ./build/api/app.js",
     "test": "echo 'no testing script specific'"
   },
   "author": "Comsumer Mobile Team",
