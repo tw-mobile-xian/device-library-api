@@ -1,4 +1,5 @@
 import express from 'express';
+import path from 'path';
 
 import router from './router';
 
@@ -10,8 +11,10 @@ app.set(port_key, process.env.PORT || DEFAULT_PORT);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.resolve(__dirname, '../../public')));
 
 app.use('/', router);
+app.use('/api', router);
 app.use((req, res) => {
   res.type('text/plain');
   res.status(404);

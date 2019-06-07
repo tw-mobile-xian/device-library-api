@@ -1,16 +1,10 @@
 import { Router } from 'express';
-import path from 'path';
 
 import DeviceController from './controller/DeviceController';
 import RecordController from './controller/RecordController';
 import ListingController from './controller/ListingController';
 
 const router = Router();
-
-router.get('/', (req, res) => {
-  res.type('text/html');
-  res.sendFile(path.resolve(__dirname, '../../console/index.html'));
-});
 
 router.get('/listings', async (req, res, next) => {
   const controller = new ListingController();
