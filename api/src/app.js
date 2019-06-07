@@ -13,8 +13,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.resolve(__dirname, '../../public')));
 
-app.use('/', router);
 app.use('/api', router);
+app.use('/', router);
 app.use((req, res) => {
   res.type('text/plain');
   res.status(404);
@@ -29,5 +29,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(app.get(port_key), () => {
-  console.log('Express started on http://localhost:' + app.get(port_key) + '; press Ctrl-C to terminate.');
+  console.log('\nExpress started on http://localhost:' + app.get(port_key) + '; press Ctrl-C to terminate.\n');
 });
