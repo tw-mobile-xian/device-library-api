@@ -18,7 +18,7 @@ function requestDevices(completion) {
 }
 
 function populateRecords(records) {
-  (records || []).forEach(record => $('#record-list').append(recordPanel(record)));
+  (records || []).filter(record => record.device).forEach(record => $('#record-list').append(recordPanel(record)));
 }
 
 function populateDevices(devices) {
@@ -30,9 +30,9 @@ function recordPanel(record) {
            "<div>" +
              "<div>" + "id: " + record._id + "</div>" +
              "<div>" + "type: " + record.type + "</div>" +
-             (record.borrower ? ("<div>" + "borrower: " + personPanel(record.borrower) + "</div>") : "") +
-             "<div>" + "date: " + record.date + "</div>" +
-             "<div>" + "device: " + devicePanel(record.device) + "</div>" +
+             (record.borrower ? ("<div>" + "borrower: " + record.borrower.name + "(" + record.borrower.team + ")" + "</div>") : "") +
+             "<div>" + "date: " + format(new Date(record.date + " GMT+0000")) + "</div>" +
+             "<div>" + "device: " + record.device.name + "</div>" +
            "</div>" +
          "</li>"
 }
@@ -56,4 +56,14 @@ function devicePanel(device) {
            "<div>" + "storage: " + device.storage + "</div>" +
            "<div>" + "status: " + device.status + "</div>" +
          "</div>"
+}
+
+function format(date) {
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+  const hour = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
+  const minute = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+  const second = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
+  return [year, month, day].join('-') + ' ' + [hour, minute, second].join(':');
 }
