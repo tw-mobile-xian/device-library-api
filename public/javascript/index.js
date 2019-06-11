@@ -54,5 +54,6 @@ function devicePanel(device) {
            "<div>" + "platform: " + device.platform + "</div>" +
            "<div>" + "version: " + device.version + "</div>" +
            "<div>" + "storage: " + device.storage + "</div>" +
+           "<div>" + "status: " + device.status + "</div>" +
          "</div>"
 }
