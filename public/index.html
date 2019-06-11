@@ -2,12 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Device Library</title>
+    <link rel="stylesheet" type="text/css" href="./style/index.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./javascript/index.js"></script>
 </head>
 <body>
-    <h1 style="text-align: center;">Hello, Device Library(REA小借借)!</h1>
-    <ul id="data-list"></ul>
+    <h1 class="display-1 text-center">Device Library</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                <h3>Record List</h3>
+                <ul id="record-list" class="list-group"></ul>
+            </div>
+            <div class="col-4">
+                <h3>Device List</h3>
+                <ul id="device-list" class="list-group"></ul>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
