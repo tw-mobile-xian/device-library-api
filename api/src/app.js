@@ -14,10 +14,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.resolve(__dirname, '../../public')));
 
 app.use('/api', (req, res, next) => {
-  if (req.header['identifier'] === "5bCP5YCf5YCf") {
+  if (req.header('identifier') === "5bCP5YCf5YCf") {
     next();
     return;
   } else {
+    console.log("Request Header: " + req.header);
     res.status(403);
     res.send("403 - Forbidden")
   }
