@@ -13,6 +13,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.resolve(__dirname, '../../public')));
 
+app.use('/api', (req, res, next) => {
+  if (req.header['identifier'] === "5bCP5YCf5YCf") {
+    next();
+    return;
+  } else {
+    res.status(403);
+    res.send("403 - Forbidden")
+  }
+})
+
 app.use('/api', router);
 app.use('/', router);
 app.use((req, res) => {
