@@ -4,18 +4,37 @@ $(document).ready(() => {
 });
 
 function requestRecords(completion) {
-  fetch('/api/records')
+  fetch('/api/records', { headers: { identifier: adminIdentifier() } })
       .then(response => response.json())
       .then(records => completion(undefined, records.reverse()))
       .catch(error => completion(error));
 }
 
 function requestDevices(completion) {
-  fetch('/api/devices')
+  fetch('/api/devices', { headers: { identifier: adminIdentifier() } })
       .then(response => response.json())
       .then(devices => completion(undefined, devices))
       .catch(error => completion(error));
 }
+
+function adminIdentifier() {
+  return getUrlParameter('identifier');
+}
+
+function getUrlParameter(sParam) {
+  var sPageURL = window.location.search.substring(1),
+    sURLVariables = sPageURL.split('&'),
+    sParameterName,
+    i;
+
+  for (i = 0; i < sURLVariables.length; i++) {
+    sParameterName = sURLVariables[i].split('=');
+
+    if (sParameterName[0] === sParam) {
+      return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+    }
+  }
+};
 
 function populateRecords(records) {
   (records || []).filter(record => record.device).forEach(record => $('#record-list').append(recordPanel(record)));
