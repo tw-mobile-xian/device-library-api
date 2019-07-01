@@ -25,7 +25,6 @@ app.use('/api', (req, res, next) => {
 })
 
 app.use('/api', router);
-app.use('/', router);
 app.use((req, res) => {
   res.type('text/plain');
   res.status(404);

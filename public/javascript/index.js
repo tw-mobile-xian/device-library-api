@@ -4,14 +4,14 @@ $(document).ready(() => {
 });
 
 function requestRecords(completion) {
-  fetch('/records')
+  fetch('/api/records')
       .then(response => response.json())
       .then(records => completion(undefined, records.reverse()))
       .catch(error => completion(error));
 }
 
 function requestDevices(completion) {
-  fetch('/devices')
+  fetch('/api/devices')
       .then(response => response.json())
       .then(devices => completion(undefined, devices))
       .catch(error => completion(error));
