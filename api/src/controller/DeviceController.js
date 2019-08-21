@@ -24,9 +24,10 @@ export default class DeviceController {
   async getDeviceBy(id) {
     const device = await this._deviceService.getDeviceBy(id);
     if (device) {
+      const records = await this._recordService.getRecordsFor(device.id);
       const latestRecord = await this._recordService.getLatestRecordFor(device.id);
       const status = (latestRecord && latestRecord.type === RECORD_TYPE.BORROW) ? DEVICE_STATUS.UNAVAILABLE : DEVICE_STATUS.AVAILABLE;
-      return Object.assign(JSON.parse(JSON.stringify(device)), { status: status });
+      return Object.assign(JSON.parse(JSON.stringify(device)), { status: status, expanded: { records: records } });
     }
   }
 }
