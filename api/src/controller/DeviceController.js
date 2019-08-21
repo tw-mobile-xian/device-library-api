@@ -11,7 +11,7 @@ export default class DeviceController {
 
   async getDevices() {
     return await Promise.all(
-        this._deviceService.getDevices()
+        (await this._deviceService.getDevices())
             .map(device => new Device(device))
             .map(async device => {
               const latestRecord = await this._recordService.getLatestRecordFor(device.id);
@@ -22,7 +22,7 @@ export default class DeviceController {
   }
 
   async getDeviceBy(id) {
-    const device = this._deviceService.getDeviceBy(id);
+    const device = await this._deviceService.getDeviceBy(id);
     if (device) {
       const latestRecord = await this._recordService.getLatestRecordFor(device.id);
       const status = (latestRecord && latestRecord.type === RECORD_TYPE.BORROW) ? DEVICE_STATUS.UNAVAILABLE : DEVICE_STATUS.AVAILABLE;

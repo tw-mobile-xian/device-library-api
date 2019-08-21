@@ -11,7 +11,7 @@ export default class ListingController {
 
   async getListings() {
     const devices = await Promise.all(
-      this._deviceService.getDevices()
+      (await this._deviceService.getDevices())
         .map(device => new Device(device))
         .map(async device => {
           const latestRecord = await this._recordService.getLatestRecordFor(device.id);
