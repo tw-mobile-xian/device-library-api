@@ -7,7 +7,7 @@ export const DeviceSchema = new mongoose.Schema({
   platform: String,
   version: String,
   storage: String
-}, { _id: false });
+});
 
 const Device = mongoose.model('Device', DeviceSchema);
 

@@ -14,4 +14,8 @@ export default class DeviceController {
     const devices = await this._dataSource.find(Device, {id: id});
     return devices[0];
   }
+
+  async createDevice(device) {
+    return await this._dataSource.save(device);
+  }
 }

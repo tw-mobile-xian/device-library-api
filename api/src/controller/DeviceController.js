@@ -3,6 +3,8 @@ import DeviceService from '../service/DeviceService';
 import {RECORD_TYPE} from '../model/record';
 import Device, {DEVICE_STATUS} from '../model/device';
 
+const uuidv4 = require('uuid/v4');
+
 export default class DeviceController {
   constructor() {
     this._recordService = new RecordService();
@@ -29,5 +31,11 @@ export default class DeviceController {
       const status = (latestRecord && latestRecord.type === RECORD_TYPE.BORROW) ? DEVICE_STATUS.UNAVAILABLE : DEVICE_STATUS.AVAILABLE;
       return Object.assign(JSON.parse(JSON.stringify(device)), { status: status, expanded: { records: records } });
     }
+  }
+
+  async createDevice(deviceDocument) {
+    const device = new Device(Object.assign(deviceDocument, {id: uuidv4()}));
+    const createdDevice = await this._deviceService.createDevice(device);
+    return Object.assign(JSON.parse(JSON.stringify(createdDevice)), { __v: undefined });
   }
 }
