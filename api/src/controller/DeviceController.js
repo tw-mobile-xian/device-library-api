@@ -26,7 +26,9 @@ export default class DeviceController {
   async getDeviceBy(id) {
     const device = await this._deviceService.getDeviceBy(id);
     if (device) {
-      const records = await this._recordService.getRecordsFor(device.id);
+      const records = (await this._recordService.getRecordsFor(device.id)).map( record => {
+        return Object.assign(JSON.parse(JSON.stringify(record)), {deviceID: undefined, __v: undefined});
+        });
       const latestRecord = await this._recordService.getLatestRecordFor(device.id);
       const status = (latestRecord && latestRecord.type === RECORD_TYPE.BORROW) ? DEVICE_STATUS.UNAVAILABLE : DEVICE_STATUS.AVAILABLE;
       return Object.assign(JSON.parse(JSON.stringify(device)), { status: status, expanded: { records: records } });
@@ -39,9 +41,8 @@ export default class DeviceController {
     return Object.assign(JSON.parse(JSON.stringify(createdDevice)), { __v: undefined });
   }
 
-  async updateDevice(deviceDocument) {
-    const device = new Device(Object.assign(deviceDocument));
-    const updatedDevice = await this._deviceService.updateDevice(device);
+  async updateDeviceBy(id, deviceDocument) {
+    const updatedDevice = await this._deviceService.updateDeviceBy(id, deviceDocument);
     return Object.assign(JSON.parse(JSON.stringify(updatedDevice)), { __v: undefined });
   }
 

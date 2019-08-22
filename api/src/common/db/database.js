@@ -13,8 +13,8 @@ export default class Database {
     return this._db.find(model, query);
   }
 
-  update(model, document) {
-    return this._db.update(model, document);
+  update(model, document, query) {
+    return this._db.update(model, document, query);
   }
 
   delete(model, query) {

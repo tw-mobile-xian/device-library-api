@@ -46,10 +46,10 @@ router.post('/devices', async (req, res, next) => {
   }
 });
 
-router.put('/devices', async (req, res, next) => {
+router.put('/devices/:id', async (req, res, next) => {
   const controller = new DeviceController();
   try {
-    const device = await controller.updateDevice(req.body);
+    const device = await controller.updateDeviceBy(req.params.id, req.body);
     if (device) {
       res.status(200);
       res.type('application/json');

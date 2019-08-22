@@ -26,8 +26,8 @@ export default class MongooseDatabase {
     return new Promise(handler);
   }
 
-  update(model, document) {
-    const handler = (resolve, reject) => model.findByIdAndUpdate(document._id, document, { new: true }, (err, document) => err ? reject(err) : resolve(document));
+  update(model, document, query) {
+    const handler = (resolve, reject) => model.findOneAndUpdate(query, document, { new: true }, (err, document) => err ? reject(err) : resolve(document));
     return new Promise(handler);
   }
 
