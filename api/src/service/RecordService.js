@@ -10,8 +10,12 @@ export default class RecordService {
     return await this._dataSource.find(Record);
   }
 
+  async getRecordsFor(deviceID) {
+    return await this._dataSource.find(Record, { deviceID: deviceID });
+  }
+
   async getLatestRecordFor(deviceID) {
-    const records = await this._dataSource.find(Record, { deviceID: deviceID });
+    const records = this.getRecordsFor(deviceID);
     return records[records.length - 1];
   }
 

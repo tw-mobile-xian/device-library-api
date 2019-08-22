@@ -1,15 +1,21 @@
-import fs from 'fs';
-import path from 'path';
+import Database from '../common/db/database';
+import Device from "../model/device";
 
 export default class DeviceController {
-  getDevices() {
-    const rawData = fs.readFileSync(path.resolve(__dirname, '../../../resource/devices.json'));
-    return JSON.parse(rawData);
+  constructor() {
+    this._dataSource = new Database()
   }
 
-  getDeviceBy(id) {
-    const rawData = fs.readFileSync(path.resolve(__dirname, '../../../resource/devices.json'));
-    const devices = JSON.parse(rawData);
-    return devices.filter(device => device.id === id)[0];
+  async getDevices() {
+    return await this._dataSource.find(Device);
+  }
+
+  async getDeviceBy(id) {
+    const devices = await this._dataSource.find(Device, {id: id});
+    return devices[0];
+  }
+
+  async createDevice(device) {
+    return await this._dataSource.save(device);
   }
 }

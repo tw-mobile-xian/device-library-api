@@ -30,6 +30,22 @@ router.get('/devices', async (req, res, next) => {
   }
 });
 
+router.post('/devices', async (req, res, next) => {
+  const controller = new DeviceController();
+  try {
+    const createdDevice = await controller.createDevice(req.body);
+    if (createdDevice) {
+      res.status(201);
+      res.type('application/json');
+      res.send(createdDevice);
+    } else {
+      next();
+    }
+  } catch(error) {
+    next(error)
+  }
+});
+
 router.get('/devices/:id', async (req, res, next) => {
   const controller = new DeviceController();
   try {
