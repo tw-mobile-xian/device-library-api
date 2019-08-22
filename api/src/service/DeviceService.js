@@ -18,4 +18,12 @@ export default class DeviceController {
   async createDevice(device) {
     return await this._dataSource.save(device);
   }
+
+  async updateDeviceBy(id, device) {
+    return await this._dataSource.update(Device, device, {id: id});
+  }
+
+  async deleteDeviceBy(id) {
+    return await this._dataSource.delete(Device, {id: id});
+  }
 }

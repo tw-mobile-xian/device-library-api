@@ -5,6 +5,7 @@ const LOCAL_MONGODB_URI = 'mongodb://127.0.0.1:27017/' + DB_NAME;
 
 export default class MongooseDatabase {
   constructor() {
+    mongoose.set('useFindAndModify', false);
     const mongodbURI = process.env.MONGODB_URI || LOCAL_MONGODB_URI;
     mongoose.connect(mongodbURI, { useNewUrlParser: true });
     const conn = mongoose.connection;
@@ -22,6 +23,16 @@ export default class MongooseDatabase {
 
   find(model, query) {
     const handler = (resolve, reject) => model.find(query, (err, document) => err ? reject(err) : resolve(document));
+    return new Promise(handler);
+  }
+
+  update(model, document, query) {
+    const handler = (resolve, reject) => model.findOneAndUpdate(query, document, { new: true }, (err, document) => err ? reject(err) : resolve(document));
+    return new Promise(handler);
+  }
+
+  delete(model, query) {
+    const handler = (resolve, reject) => model.findOneAndDelete(query, (err, document) => err ? reject(err) : resolve(document));
     return new Promise(handler);
   }
 }
