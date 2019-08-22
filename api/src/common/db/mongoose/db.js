@@ -30,4 +30,9 @@ export default class MongooseDatabase {
     const handler = (resolve, reject) => model.findByIdAndUpdate(document._id, document, { new: true }, (err, document) => err ? reject(err) : resolve(document));
     return new Promise(handler);
   }
+
+  delete(model, query) {
+    const handler = (resolve, reject) => model.findOneAndDelete(query, (err, document) => err ? reject(err) : resolve(document));
+    return new Promise(handler);
+  }
 }

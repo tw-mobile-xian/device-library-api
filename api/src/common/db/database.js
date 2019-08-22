@@ -16,4 +16,8 @@ export default class Database {
   update(model, document) {
     return this._db.update(model, document);
   }
+
+  delete(model, query) {
+    return this._db.delete(model, query);
+  }
 }

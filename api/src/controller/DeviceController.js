@@ -45,7 +45,8 @@ export default class DeviceController {
     return Object.assign(JSON.parse(JSON.stringify(updatedDevice)), { __v: undefined });
   }
 
-  deleteDeviceBy(id) {
-
+  async deleteDeviceBy(id) {
+    const deletedDevice = await this._deviceService.deleteDeviceBy(id);
+    return Object.assign(JSON.parse(JSON.stringify(deletedDevice)), {__v: undefined});
   }
 }
