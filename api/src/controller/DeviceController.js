@@ -38,4 +38,14 @@ export default class DeviceController {
     const createdDevice = await this._deviceService.createDevice(device);
     return Object.assign(JSON.parse(JSON.stringify(createdDevice)), { __v: undefined });
   }
+
+  async updateDevice(deviceDocument) {
+    const device = new Device(Object.assign(deviceDocument));
+    const updatedDevice = await this._deviceService.updateDevice(device);
+    return Object.assign(JSON.parse(JSON.stringify(updatedDevice)), { __v: undefined });
+  }
+
+  deleteDeviceBy(id) {
+
+  }
 }

@@ -12,4 +12,8 @@ export default class Database {
   find(model, query) {
     return this._db.find(model, query);
   }
+
+  update(model, document) {
+    return this._db.update(model, document);
+  }
 }
