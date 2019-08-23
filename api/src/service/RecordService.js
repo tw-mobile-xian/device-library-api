@@ -15,7 +15,7 @@ export default class RecordService {
   }
 
   async getLatestRecordFor(deviceID) {
-    const records = this.getRecordsFor(deviceID);
+    const records = await this.getRecordsFor(deviceID);
     return records[records.length - 1];
   }
 

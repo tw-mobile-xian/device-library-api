@@ -11,18 +11,20 @@ export default class RecordController {
   }
 
   async getRecords() {
-    return (await this._recordService.getRecords()).map(record => {
-      const device = this._deviceService.getDeviceBy(record.deviceID);
-      const json = JSON.parse(JSON.stringify(record));
-      json.date = DateFromatter.format(new Date(json.date));
-      return Object.assign(json, {device: device}, {deviceID: undefined, __v: undefined});
-    });
+    return await Promise.all(
+      (await this._recordService.getRecords()).map(async record => {
+        const device = await this._deviceService.getDeviceBy(record.deviceID);
+        const json = JSON.parse(JSON.stringify(record));
+        json.date = DateFromatter.format(new Date(json.date));
+        return Object.assign(json, {device: device}, {deviceID: undefined, __v: undefined});
+      })
+    );
   }
 
   async createRecord(recordDocument) {
     const record = new Record(Object.assign(recordDocument, { date: Date.now(), period: 3 * DAY }));
     const createdRecord = await this._recordService.createRecord(record);
-    const device = this._deviceService.getDeviceBy(createdRecord.deviceID);
+    const device = await this._deviceService.getDeviceBy(createdRecord.deviceID);
     return Object.assign(JSON.parse(JSON.stringify(createdRecord)), { device: device }, { deviceID: undefined, __v: undefined });
   }
 }
