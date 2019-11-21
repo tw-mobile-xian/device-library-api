@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.resolve(__dirname, '../../public')));
 
 app.use('/api', (req, res, next) => {
-  if (req.header('identifier') === "5bCP5YCf5YCf") {
+  if (req.header('identifier') === "5bCP6DCf5YCf") {
     next();
     return;
   } else {
